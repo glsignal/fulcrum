@@ -63,9 +63,9 @@ ul#primary-nav {
   text-align: right;
   background-image: url('/images/logo.png');
   background-repeat: no-repeat;
-  background-position: 13px 6px;
+  background-position: 15px 5px;
   margin: 0;
-  padding: 1em 1em 1em 40px;
+  padding: 1.8em 1.8em 1.8em 320px;
   color: white;
   font-weight: normal;
 }
@@ -80,9 +80,14 @@ ul#primary-nav li a {
   color: #454545;
   text-decoration: none;
 }
+ul#primary-nav li.root>a:before {
+  content: "Powered by " !important;
+}
 ul#primary-nav li.root {
   float: left;
-  font-size: large;
+  font-size: 10px;
+  position: relative;
+  top: 1.8em;
 }
 ul#primary-nav li.secondary {
   position: relative;
