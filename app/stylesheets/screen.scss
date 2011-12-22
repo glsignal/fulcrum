@@ -5,9 +5,11 @@
 @import 'twipsy';
 @import 'icons';
 
-$darkgrey:   #6a7176;           // Header color
+$darkgrey:   #f6f6f6;           // Header color
+$lightgrey:   #c0c0c0;           // Header color
 $orange:     rgb(250,182,155);  // Estimate gauge color
-
+$awesomeRed: #c51b18;
+$awesomeLightRed: #ffaaaa;
 // Tango icon theme pallette
 // http://tango.freedesktop.org/Tango_Icon_Theme_Guidelines
 $butter-1:      #fce94f;
@@ -48,11 +50,11 @@ a img {
 }
 
 #header {
-  background: $darkgrey;
-  @include background(linear-gradient(top, $darkgrey, $darkgrey*0.75));
+  background: white;
+  //@include background(linear-gradient(top, $darkgrey, $darkgrey*0.85));
   border-bottom: 1px solid $darkgrey*0.7;
   @include box-shadow(0 1px 2px #aaaaaa);
-  text-shadow: black 0 1px 0;
+  text-shadow: #808080 0 1px 1px;
   position: relative;
   z-index: 900;
 }
@@ -65,14 +67,17 @@ ul#primary-nav {
   margin: 0;
   padding: 1em 1em 1em 40px;
   color: white;
-  font-weight: bold;
+  font-weight: normal;
+}
+ul#primary-nav li ul {
+  text-shadow: #ddd 0 1px 1px;
 }
 ul#primary-nav li {
   padding: 0 0.5em;
   display: inline;
 }
 ul#primary-nav li a {
-  color: white;
+  color: #454545;
   text-decoration: none;
 }
 ul#primary-nav li.root {
@@ -81,12 +86,18 @@ ul#primary-nav li.root {
 }
 ul#primary-nav li.secondary {
   position: relative;
-  @include icons-sprite(collapse, false, 0px, 6px);
-  background-color: #333;
+  color: white;
+  @include icons-sprite(collapse, true, 0px, 6px);
+  //background-color: #404040;
   background-position-x:right;
   padding: 0.4em 18px 0.4em 0.4em;
   @include border-radius(5px);
-  text-shadow: black 0 1px 0;
+}
+ul#primary-nav li.secondary a {
+  color: #323232;
+}
+ul#primary-nav li.secondary ul li a {
+  color: white;
 }
 ul#primary-nav li.secondary ul {
   visibility: hidden;
@@ -98,13 +109,14 @@ ul#primary-nav li.secondary ul {
   padding: 0.3em;
   position: absolute;
   left: 0; top: 1.7em;
-  background-color: #333;
+  background-color: #606060;
   @include border-radius(0 5px 5px 5px);
 }
 ul#primary-nav li.secondary ul li {
   white-space: nowrap;
   text-align: left;
   display: block;
+  color: white;
 }
 
 #title_bar {
@@ -115,7 +127,7 @@ ul#primary-nav li.secondary ul li {
   border-bottom: 1px solid #ededed;
   padding: 5px 10px 3px 10px;
   font-size: 1.0em;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 140%;
   margin-bottom: 0.5em;
   color: #5e6469;
@@ -128,13 +140,15 @@ ul#primary-nav li.secondary ul li {
     float: right;
   }
 
+  h1 { font-weight: normal; }
+
   #add_story {
     @include background(sprite($icons-sprites, feature, 2, 2),
                         linear-gradient(top, $aluminium-3, $aluminium-3*0.75));
     background-repeat: no-repeat;
     margin: 0;
     padding: 0.2em 0.4em 0.2em 18px;
-    @include border-radius(3px);
+    //@include border-radius(3px);
     border: 1px solid $aluminium-5;
     cursor: pointer;
     font-size: small;
@@ -151,7 +165,7 @@ ul#primary-nav li.secondary ul li {
 }
 
 #main {
-  margin: 1em;
+  margin: 1em 1em 0 1em;
 }
 
 html.stories, html.stories body, html.stories div#main {
@@ -166,7 +180,7 @@ html.stories, html.stories body, html.stories div#main {
   margin: none;
   padding: 3px;
   color: white;
-  background-color: $darkgrey;
+  background-color: #888;
   @include border-radius(3px);
   text-decoration: none;
   text-shadow: none;
@@ -185,11 +199,16 @@ table.stories {
 }
 
 table.stories td {
+  padding: 8px 0px !important;
   vertical-align: top;
-  background-color: #ccc;
+  background-color: #eee;
+  border: 4px solid white;
+  border-width: 0px 4px 0px 4px ;
+  @include box-shadow(inset 0px 4px 5px -2px #333);
 }
 
 div.storycolumn {
+  //@include box-shadow(inset 0 1px 2px #000);
   overflow: auto;
   padding-bottom: 80px;
 }
@@ -197,11 +216,13 @@ div.storycolumn {
 /* Story columns headers */
 table.stories th {
   background: $darkgrey;
-  @include background(linear-gradient(top, $darkgrey, $darkgrey*0.75));
-  color: #eee;
+  z-index: 10;
+  background-color: $awesomeRed*0.9;
+  @include box-shadow(0px 4px 5px -2px #333);
+  //@include background(linear-gradient(top, $awesomeRed, $awesomeRed*0.75));
+  color: white;
   padding: 0.2em;
-  font-weight: bold;
-  @include border-radius(5px 5px 0 0);
+  font-weight: normal;
   a.toggle-column{
     float: right;
     padding: 0px 5px 1px;
@@ -218,8 +239,9 @@ div.story {
   background-repeat: no-repeat;
   background-position: 4px 4px;
   background-color: #eee;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
   border-top: 1px solid #fff;
+  @include box-shadow(0px 2px 8px -2px #333);
 }
 div.story:hover {
   background-color: #ddd;
@@ -269,8 +291,9 @@ span.estimate {
   @include border-radius(3px);
   vertical-align: top;
   font-size: x-small;
-  font-weight: bold;
+  eont-weight: bold;
   font-style: italic;
+  color: #444444;
 }
 
 span.estimate_1 {
@@ -315,11 +338,11 @@ span.estimate_8 {
 }
 
 .story.release {
-  background-color: #333;
-  color: white;
+  background-color: #ccc;
+  color: #323232;
 }
 .story.release:hover {
-  background-color: #222;
+  background-color: #bbb;
 }
 
 /* Story action buttons */
@@ -334,9 +357,12 @@ span.estimate_8 {
 
 /* Iteration markers */
 .iteration {
-  @include icons-sprite(iteration, false, 2px, 3px);
-  background-color: #000;
-  color: #ddd;
+  @include icons-sprite(iteration, false, 2px, 4px);
+  @include box-shadow(0px 4px 5px -2px #888);
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-left: 4px #B11815 solid;
   padding: 0.2em 0.2em 0.2em 20px
 }
 .iteration .points {
@@ -345,14 +371,14 @@ span.estimate_8 {
 
 .state-actions input {
   margin: 0;
-  padding: 0 0.3em;
+  padding: 0 0.3em 0.2em 0.3em;
   @include border-radius(3px);
   border: 1px solid #333;
   cursor: pointer;
   font-size: small;
-  font-weight: bold;
+  font-weight: normal;
   color: white;
-  @include background(linear-gradient(top, $aluminium-3, $aluminium-3*0.75));
+  @include background(linear-gradient(top, $aluminium-4, $aluminium-4*0.75));
   border-color: $aluminium-5;
   text-shadow:  $aluminium-5 0 1px 0;
   @include box-shadow(0 1px 2px #aaaaaa);
@@ -385,7 +411,7 @@ span.estimate_8 {
                       linear-gradient(top, $scarlet-red-1, $scarlet-red-1*0.75));
   background-repeat: no-repeat;
   border-color: $scarlet-red-3;
-  padding-left: 16px;
+  padding-left: 20px;
 }
 
 table#import tr.valid, .notice {
@@ -404,7 +430,7 @@ ul#projects {
 }
 
 ul#projects li {
-  background: #efefef;
+  background: #f8f8f8;
   @include background(linear-gradient(top, #efefef, #dfe1e2));
   @include box-shadow(0 1px 2px #aaaaaa);
   text-shadow: white 0 1px 0;
@@ -414,11 +440,12 @@ ul#projects li {
   border-top: 1px solid #dfe1e2;
 }
 ul#projects li:hover {
-  @include background(linear-gradient(top, darken(#efefef, 10%), darken(#dfe1e2, 10%)));
+  @include background(linear-gradient(top, darken(#f8f8f8, 6%), darken(#f0f0f0, 9%)));
 }
 
 ul#projects li h2 {
   display: inline;
+  font-weight: normal;
 }
 
 div.project_options {
@@ -429,6 +456,8 @@ ul#projects li:hover {
   background-color: #babdb6;
 }
 
+ul#projects li h2>a { text-decoration: none; }
+ul#projects li { color: #808080; }
 a.button {
   background: #efefef;
   @include background(linear-gradient(top, #efefef, #dfe1e2));
@@ -438,15 +467,15 @@ a.button {
   @include border-radius(5px);
   border: 1px solid $darkgrey*1.5;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 
 
 a.button:hover {
-  @include background(linear-gradient(top, $chameleon-2, $chameleon-3));
-  color: white;
-  text-shadow: $darkgrey 0 1px 0;
+  //@include background(linear-gradient(top, $awesomeLightRed, $awesomeLightRed*0.85));
+  @include background(linear-gradient(top, darken(#f8f8f8, 6%), darken(#f0f0f0, 9%)));
+  text-shadow: white 0 1px 0;
 }
 .tags{
   color:$sky-blue-3;
@@ -468,7 +497,8 @@ a.button:hover {
     padding: 10px 0px 14px;
   }
   .small{
-    color:$aluminium-3;
+    //color:$aluminium-3;
+    color: #323232;
     font-size:0.85em;
     padding-left:15px;
     margin: 0 10px 10px 0;
