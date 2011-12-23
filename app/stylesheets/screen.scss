@@ -54,7 +54,7 @@ a img {
   //@include background(linear-gradient(top, $darkgrey, $darkgrey*0.85));
   border-bottom: 1px solid $darkgrey*0.7;
   @include box-shadow(0 1px 2px #aaaaaa);
-  text-shadow: #808080 0 1px 1px;
+  //text-shadow: #808080 0 1px 1px;
   position: relative;
   z-index: 900;
 }
@@ -69,9 +69,6 @@ ul#primary-nav {
   color: white;
   font-weight: normal;
 }
-ul#primary-nav li ul {
-  text-shadow: #ddd 0 1px 1px;
-}
 ul#primary-nav li {
   padding: 0 0.5em;
   display: inline;
@@ -80,14 +77,11 @@ ul#primary-nav li a {
   color: #454545;
   text-decoration: none;
 }
-ul#primary-nav li.root>a:before {
-  content: "Powered by " !important;
-}
 ul#primary-nav li.root {
   float: left;
   font-size: 10px;
   position: relative;
-  top: 1.8em;
+  top: 2.1em;
 }
 ul#primary-nav li.secondary {
   position: relative;
