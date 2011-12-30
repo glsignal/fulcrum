@@ -86,7 +86,7 @@ ul#primary-nav li.root {
 ul#primary-nav li.secondary {
   position: relative;
   color: white;
-  @include icons-sprite(collapse, true, 0px, 6px);
+  //@include icons-sprite(collapse, true, 0px, 6px);
   //background-color: #404040;
   background-position-x:right;
   padding: 0.4em 18px 0.4em 0.4em;
